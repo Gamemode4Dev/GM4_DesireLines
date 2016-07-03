@@ -51,7 +51,7 @@ public class DesireLines extends JavaPlugin implements Listener {
         //Log module enabled message
         getLogger().log(Level.INFO, ChatColor.GREEN + "[DesireLines] Module enabled!");
     }
-    
+
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         //Prevent checking same block twice
