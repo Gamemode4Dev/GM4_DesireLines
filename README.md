@@ -1,4 +1,4 @@
-# GM4_DesireLines
+# GM4 Desire Lines
 A bukkit plugin implementation of the Gamemode 4 module Desire Lines
 
 ###Default configuration:
