@@ -2,7 +2,7 @@
 A bukkit plugin implementation of the Gamemode 4 module Desire Lines
 
 ###Default configuration:
-```
+``` yaml
 #Probability in percent that block will change
 walking-probability: 5
 sprint-probability: 10
