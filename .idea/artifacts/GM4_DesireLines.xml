@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="GM4_DesireLines">
-    <output-path>$PROJECT_DIR$/out/artifacts/GM4_DesireLines</output-path>
-    <root id="archive" name="GM4_DesireLines.jar">
-      <element id="module-output" name="GM4_DesireLines" />
-    </root>
-  </artifact>
-</component>
