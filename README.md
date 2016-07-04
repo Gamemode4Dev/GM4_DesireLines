@@ -12,14 +12,13 @@ sneak-probability: 0
 under_replacements:
 - 'GRASS>DIRT'
 - 'DIRT>DIRT:1'
-- 'SNOW>AIR'
-- 'SNOW:1>SNOW'
 
-#List of replacements for blocks above changed blocks
+#List of replacements for blocks player is in
 in_replacements:
 - 'LONG_GRASS>AIR'
 - 'LONG_GRASS:1>AIR'
 - 'YELLOW_FLOWER>AIR'
+- 'RED_ROSE>AIR'
 - 'DOUBLE_PLANT>AIR'
 - 'DOUBLE_PLANT:1>AIR'
 - 'DOUBLE_PLANT:2>AIR'
@@ -28,4 +27,6 @@ in_replacements:
 - 'RED_MUSHROOM>AIR'
 - 'BROWN_MUSHROOM>AIR'
 - 'DEAD_BUSH>AIR'
+- 'SNOW>AIR'
+- 'SNOW:1>SNOW'
 ```
