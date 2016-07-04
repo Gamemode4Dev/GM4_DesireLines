@@ -1,4 +1,4 @@
-package com.spiderrobotman.GM4_DesireLines;
+package co.gm4.GM4_DesireLines;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -55,11 +55,6 @@ public class DesireLines extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
-        //Prevent checks when flying or off ground
-        if(!e.getPlayer().isOnGround() || e.getPlayer().isFlying()) return;
-        //Prevent checking same block twice
-        if(e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) return;
-
         //Set probability for different speeds
         int prob = WALKING_PROBABILITY;
         if(e.getPlayer().isSneaking()) prob = SNEAK_PROBABILITY;
@@ -67,6 +62,12 @@ public class DesireLines extends JavaPlugin implements Listener {
 
         //Generate random number and see if under set prob percentage
         if(Math.random()*100 < prob) {
+
+            //Prevent checks when flying or off ground
+            if(!e.getPlayer().isOnGround() || e.getPlayer().isFlying()) return;
+
+            //Prevent checking same block twice
+            if(e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) return;
 
             //Break blocks below player
             Block below = e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN);
