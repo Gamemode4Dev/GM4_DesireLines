@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -54,8 +55,10 @@ public class DesireLines extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
+        //Prevent checks when flying or off ground
+        if(!e.getPlayer().isOnGround() || e.getPlayer().isFlying()) return;
         //Prevent checking same block twice
-        if(e.getFrom().getX() == e.getTo().getX() && e.getFrom().getZ() == e.getTo().getZ()) return;
+        if(e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) return;
 
         //Set probability for different speeds
         int prob = WALKING_PROBABILITY;
@@ -66,20 +69,20 @@ public class DesireLines extends JavaPlugin implements Listener {
         if(Math.random()*100 < prob) {
 
             //Break blocks below player
-            Block below = e.getPlayer().getLocation().subtract(0, 0.1, 0).getBlock();
+            Block below = e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN);
             if(below != null && below.getType() != Material.AIR) {
                 ItemStack newBlock = UNDER_REPLACE.get(itemFromBlock(below));
                 if(newBlock != null) {
                     setBlockAt(below, newBlock);
+                }
+            }
 
-                    //Break blocks player is in if below broke
-                    Block in = e.getPlayer().getLocation().getBlock();
-                    if(in != null && in.getType() != Material.AIR) {
-                        ItemStack newBlockIn = IN_REPLACE.get(itemFromBlock(in));
-                        if(newBlockIn != null) {
-                            setBlockAt(in, newBlockIn);
-                        }
-                    }
+            //Break blocks player is in
+            Block in = e.getPlayer().getLocation().getBlock();
+            if(in != null && in.getType() != Material.AIR) {
+                ItemStack newBlockIn = IN_REPLACE.get(itemFromBlock(in));
+                if(newBlockIn != null) {
+                    setBlockAt(in, newBlockIn);
                 }
             }
         }
